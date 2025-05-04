@@ -23,14 +23,20 @@ public class SewerageStats extends BaseTimeEntity {
     @Column(nullable = true)
     private Double agingRate;  // 노후관율
 
-    @Column(nullable = true)
+    @Column(nullable = true, length=7)
     private String agingRateYr;  // 노후관율 업데이트 년도
 
     @Column(nullable = true)
     private Double dredgingRate; // 준설율
 
-    @Column(nullable = true)
+    @Column(nullable = true, length=7)
     private String dredgingRateYr;  // 준설율 업데이트 년도
+
+    @Column(nullable = true)
+    private String riskScore;  // 위험 점수
+
+    @Column(nullable = true)
+    private int riskStage;  // 위험도
 
     @Builder
     public SewerageStats(Location location, Double agingRate, String agingRateYr, Double dredgingRate, String dredgingRateYr) {
@@ -44,5 +50,10 @@ public class SewerageStats extends BaseTimeEntity {
     public void updatedredgingRateAndDredgingRateYr(Double dredgingRate, String dredgingRateYr){
         this.dredgingRate = dredgingRate;
         this.dredgingRateYr = dredgingRateYr;
+    }
+
+    public void updateRiskScoreAndRiskStage(String riskScore, int riskStage){
+        this.riskScore = riskScore;
+        this.riskStage = riskStage;
     }
 }

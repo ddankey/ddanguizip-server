@@ -37,7 +37,7 @@ public class MapService {
         return RiskAreaListRes.of(list, riskAreaPage.getNumber(), riskAreaPage.getSize(), riskAreaPage.getTotalPages());
     }
 
-    public RiskListRes findRiskListByDong() {
-
-    }
+//    public RiskListRes findRiskListByDong() {
+//
+//    }
 }
