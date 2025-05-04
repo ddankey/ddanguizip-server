@@ -4,10 +4,13 @@ import com.ddanguizip.server.domain.location.entity.Location;
 import com.ddanguizip.server.domain.location.repository.LocationRepository;
 import com.ddanguizip.server.domain.map.dto.reponse.RiskAreaDetail;
 import com.ddanguizip.server.domain.map.dto.reponse.RiskAreaListRes;
+import com.ddanguizip.server.domain.map.dto.reponse.RiskDetail;
 import com.ddanguizip.server.domain.map.dto.reponse.RiskListRes;
 import com.ddanguizip.server.domain.map.validator.MapValidator;
 import com.ddanguizip.server.domain.publicData.entity.SelectedRiskArea;
+import com.ddanguizip.server.domain.publicData.entity.SewerageStats;
 import com.ddanguizip.server.domain.publicData.repository.SelectedRiskAreaRepository;
+import com.ddanguizip.server.domain.publicData.repository.SewerageStatsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +24,7 @@ import java.util.List;
 public class MapService {
     private final LocationRepository locationRepository;
     private final SelectedRiskAreaRepository selectedRiskAreaRepository;
+    private final SewerageStatsRepository sewerageStatsRepository;
 
     private final MapValidator mapValidator;
 
@@ -37,7 +41,13 @@ public class MapService {
         return RiskAreaListRes.of(list, riskAreaPage.getNumber(), riskAreaPage.getSize(), riskAreaPage.getTotalPages());
     }
 
-//    public RiskListRes findRiskListByDong() {
-//
-//    }
+    public RiskListRes findRiskListByDong() {
+        List<SewerageStats> sewerageStatsList = sewerageStatsRepository.findAll();
+        List<RiskDetail> list = new ArrayList<>();
+        for(SewerageStats sewerageStats: sewerageStatsList) {
+            list.add(RiskDetail.of(sewerageStats.getLocation().getCode(),sewerageStats.getRiskLevel()));
+        }
+
+        return RiskListRes.of(list);
+    }
 }
