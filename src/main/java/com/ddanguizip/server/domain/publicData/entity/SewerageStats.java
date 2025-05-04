@@ -22,31 +22,25 @@ public class SewerageStats extends BaseTimeEntity {
     @JoinColumn(name = "location_id", unique = true) // 유일하게 연결됨
     private Location location;
 
-    @Column(nullable = true)
     private Double agingRate;  // 노후관율
 
-    @Column(nullable = true, length=7)
+    @Column(length=7)
     private String agingRateYr;  // 노후관율 업데이트 년도
 
-    @Column(nullable = true)
     private Double dredgingRate; // 준설율
 
-    @Column(nullable = true, length=7)
+    @Column(length=7)
     private String dredgingRateYr;  // 준설율 업데이트 년도
 
-    @Column(nullable = true)
     private Double riskScore;  // 위험 점수
 
-    @Column(nullable = true)
-    private int riskLevel;  // 위험도
+    private Integer riskLevel;  // 위험도
 
     @Builder
-    public SewerageStats(Location location, Double agingRate, String agingRateYr, Double dredgingRate, String dredgingRateYr) {
+    public SewerageStats(Location location, Double agingRate, String agingRateYr) {
         this.location = location;
         this.agingRate = agingRate;
         this.agingRateYr = agingRateYr;
-        this.dredgingRate = dredgingRate;
-        this.dredgingRateYr = dredgingRateYr;
     }
 
     public void updatedredgingRateAndDredgingRateYr(Double dredgingRate, String dredgingRateYr){
@@ -54,7 +48,7 @@ public class SewerageStats extends BaseTimeEntity {
         this.dredgingRateYr = dredgingRateYr;
     }
 
-    public void updateRiskScoreAndRiskStage(Double riskScore, int riskLevel){
+    public void updateRiskScoreAndRiskLevel(Double riskScore, int riskLevel){
         this.riskScore = riskScore;
         this.riskLevel = riskLevel;
     }

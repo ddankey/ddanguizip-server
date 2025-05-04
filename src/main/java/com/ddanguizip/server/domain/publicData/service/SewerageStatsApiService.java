@@ -44,7 +44,7 @@ public class SewerageStatsApiService {
             Location location = locationFactory.create(hasudoResponse.gu(), point.EMD_KOR_NM(), String.valueOf(point.EMD_CD()));
             locationRepository.save(location);
 
-            SewerageStats sewerageStats = sewerageStatsFactory.create(location, hasudoResponse.oldExtnPer(), hasudoResponse.oldExtnPerYr(), null,null);
+            SewerageStats sewerageStats = sewerageStatsFactory.create(location, hasudoResponse.oldExtnPer(), hasudoResponse.oldExtnPerYr());
             sewerageStatsRepository.save(sewerageStats);
         }
     }
