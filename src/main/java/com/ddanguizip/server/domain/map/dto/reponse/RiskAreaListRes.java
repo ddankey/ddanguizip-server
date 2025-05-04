@@ -6,12 +6,12 @@ import java.util.List;
 
 @Builder
 public record RiskAreaListRes(
-        List<RiskAreaDetailList> riskAreaDetailList,
+        List<RiskAreaDetail> riskAreaDetailList,
         int pageNo,
         long pageSize,
         int totalPages
 ) {
-    public static RiskAreaListRes of(List<RiskAreaDetailList> riskAreaDetailList,
+    public static RiskAreaListRes of(List<RiskAreaDetail> riskAreaDetailList,
                                     int pageNo,
                                     long pageSize,
                                     int totalPages

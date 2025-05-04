@@ -4,16 +4,16 @@ import com.ddanguizip.server.domain.publicData.entity.SelectedRiskArea;
 import lombok.Builder;
 
 @Builder
-public record RiskAreaDetailList(
+public record RiskAreaDetail(
         String code,
         String section,
         String reason
 
 
 ) {
-    public static RiskAreaDetailList of(String code, SelectedRiskArea selectedRiskArea
+    public static RiskAreaDetail of(String code, SelectedRiskArea selectedRiskArea
                                         ){
-        return RiskAreaDetailList.builder()
+        return RiskAreaDetail.builder()
                 .code(code)
                 .section(selectedRiskArea.getSection())
                 .reason(selectedRiskArea.getReason())
