@@ -1,0 +1,28 @@
+package com.ddanguizip.server.global.common.policy;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class RiskScoreEvalutor {
+    public double calculatorScore(double agingRate, double dredgingRate) {
+        return (agingRate * 0.6) + ((100 - dredgingRate) * 0.4);
+    }
+
+    public int fromScoreByDong(double score) {
+        if (score >= 75) return 3;
+        else if (score >= 50) return 2;
+        else if (score >= 25) return 1;
+        else return 0;
+    }
+
+    public double calculatorRatio(int count, int total) {
+        return (double) count / total;
+    }
+
+    public int fromRatioByGu(double ratio) {
+        if (ratio >= 61) return 3;
+        else if (ratio >= 31) return 2;
+        else if (ratio >= 11) return 1;
+        else return 0;
+    }
+}

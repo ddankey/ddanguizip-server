@@ -5,8 +5,10 @@ import com.ddanguizip.server.global.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
 @Entity
 @Table(name = "sewerageStats")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -33,10 +35,10 @@ public class SewerageStats extends BaseTimeEntity {
     private String dredgingRateYr;  // 준설율 업데이트 년도
 
     @Column(nullable = true)
-    private String riskScore;  // 위험 점수
+    private Double riskScore;  // 위험 점수
 
     @Column(nullable = true)
-    private int riskStage;  // 위험도
+    private int riskLevel;  // 위험도
 
     @Builder
     public SewerageStats(Location location, Double agingRate, String agingRateYr, Double dredgingRate, String dredgingRateYr) {
@@ -52,8 +54,8 @@ public class SewerageStats extends BaseTimeEntity {
         this.dredgingRateYr = dredgingRateYr;
     }
 
-    public void updateRiskScoreAndRiskStage(String riskScore, int riskStage){
+    public void updateRiskScoreAndRiskStage(Double riskScore, int riskLevel){
         this.riskScore = riskScore;
-        this.riskStage = riskStage;
+        this.riskLevel = riskLevel;
     }
 }
