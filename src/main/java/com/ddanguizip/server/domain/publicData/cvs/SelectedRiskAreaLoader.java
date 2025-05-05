@@ -4,11 +4,9 @@ import com.ddanguizip.server.domain.location.entity.Location;
 import com.ddanguizip.server.domain.location.repository.LocationRepository;
 import com.ddanguizip.server.domain.publicData.entity.SelectedRiskArea;
 import com.ddanguizip.server.domain.publicData.factory.SelectedRiskAreaFactory;
-import com.ddanguizip.server.domain.publicData.repository.SelectedRiskAreaRepository;
-import com.ddanguizip.server.domain.publicData.repository.SewerageStatsRepository;
+import com.ddanguizip.server.domain.publicData.repository.selectedRiskArea.SelectedRiskAreaRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -18,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.List;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor

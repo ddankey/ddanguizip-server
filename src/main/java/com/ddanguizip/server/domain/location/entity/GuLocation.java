@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-@Table(name = "location")
+@Table(name = "guLocation")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Location extends BaseTimeEntity {
+public class GuLocation extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, columnDefinition = "bigint")
@@ -21,15 +21,11 @@ public class Location extends BaseTimeEntity {
     private String gu;
 
     @Column(nullable = false, length = 20)
-    private String dong;
-
-    @Column(nullable = false, length = 20)
     private String code;
 
     @Builder
-    public Location(String gu, String dong, String code) {
+    public GuLocation(String gu, String code) {
         this.gu = gu;
-        this.dong = dong;
         this.code = code;
     }
 }

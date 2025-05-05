@@ -7,7 +7,7 @@ import com.ddanguizip.server.domain.publicData.dto.request.PointData;
 import com.ddanguizip.server.domain.publicData.dto.response.HasudoResponse;
 import com.ddanguizip.server.domain.publicData.entity.SewerageStats;
 import com.ddanguizip.server.domain.publicData.factory.SewerageStatsFactory;
-import com.ddanguizip.server.domain.publicData.repository.SewerageStatsRepository;
+import com.ddanguizip.server.domain.publicData.repository.sewerageStats.SewerageStatsRepository;
 import com.ddanguizip.server.domain.publicData.util.SewerageStatsApiClient;
 import com.ddanguizip.server.domain.publicData.util.SewerageStatsMapper;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +44,7 @@ public class SewerageStatsApiService {
             Location location = locationFactory.create(hasudoResponse.gu(), point.EMD_KOR_NM(), String.valueOf(point.EMD_CD()));
             locationRepository.save(location);
 
-            SewerageStats sewerageStats = sewerageStatsFactory.create(location, hasudoResponse.oldExtnPer(), hasudoResponse.oldExtnPerYr(), null,null);
+            SewerageStats sewerageStats = sewerageStatsFactory.create(location, hasudoResponse.oldExtnPer(), hasudoResponse.oldExtnPerYr());
             sewerageStatsRepository.save(sewerageStats);
         }
     }

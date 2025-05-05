@@ -5,8 +5,10 @@ import com.ddanguizip.server.global.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
 @Entity
 @Table(name = "sewerageStats")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -20,29 +22,34 @@ public class SewerageStats extends BaseTimeEntity {
     @JoinColumn(name = "location_id", unique = true) // 유일하게 연결됨
     private Location location;
 
-    @Column(nullable = true)
     private Double agingRate;  // 노후관율
 
-    @Column(nullable = true)
+    @Column(length=7)
     private String agingRateYr;  // 노후관율 업데이트 년도
 
-    @Column(nullable = true)
     private Double dredgingRate; // 준설율
 
-    @Column(nullable = true)
+    @Column(length=7)
     private String dredgingRateYr;  // 준설율 업데이트 년도
 
+    private Double riskScore;  // 위험 점수
+
+    private Integer riskLevel;  // 위험도
+
     @Builder
-    public SewerageStats(Location location, Double agingRate, String agingRateYr, Double dredgingRate, String dredgingRateYr) {
+    public SewerageStats(Location location, Double agingRate, String agingRateYr) {
         this.location = location;
         this.agingRate = agingRate;
         this.agingRateYr = agingRateYr;
-        this.dredgingRate = dredgingRate;
-        this.dredgingRateYr = dredgingRateYr;
     }
 
     public void updatedredgingRateAndDredgingRateYr(Double dredgingRate, String dredgingRateYr){
         this.dredgingRate = dredgingRate;
         this.dredgingRateYr = dredgingRateYr;
+    }
+
+    public void updateRiskScoreAndRiskLevel(Double riskScore, int riskLevel){
+        this.riskScore = riskScore;
+        this.riskLevel = riskLevel;
     }
 }

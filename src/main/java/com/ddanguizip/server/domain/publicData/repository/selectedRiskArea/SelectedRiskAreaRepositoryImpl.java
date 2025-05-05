@@ -1,4 +1,4 @@
-package com.ddanguizip.server.domain.publicData.repository;
+package com.ddanguizip.server.domain.publicData.repository.selectedRiskArea;
 
 import com.ddanguizip.server.domain.location.entity.Location;
 import com.ddanguizip.server.domain.publicData.entity.SelectedRiskArea;
@@ -39,6 +39,19 @@ public class SelectedRiskAreaRepositoryImpl implements SelectedRiskAreaRepositor
                 .fetchOne();
 
         return new PageImpl<>(results, pageable, total);
+    }
+
+    @Override
+    public boolean existsByLocation(Location location) {
+        BooleanExpression filterCondition = locationEq(location);
+
+        Integer fetchFirst =  queryFactory
+                .selectOne()
+                .from(selectedRiskArea)
+                .where(filterCondition)
+                .fetchFirst();
+
+        return fetchFirst != null;
     }
 
     private BooleanExpression locationEq(Location location) {

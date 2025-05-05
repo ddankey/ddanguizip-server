@@ -6,13 +6,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SewerageStatsFactory {
-    public SewerageStats create(Location location, Double agingRate, String agingRateYr,  Double dredgingRate,String dredgingRateYr) {
+    public SewerageStats create(Location location, Double agingRate, String agingRateYr) {
         return SewerageStats.builder()
                 .location(location)
                 .agingRate(agingRate)
                 .agingRateYr(agingRateYr)
-                .dredgingRate(dredgingRate)
-                .dredgingRateYr(dredgingRateYr)
                 .build();
     }
 }

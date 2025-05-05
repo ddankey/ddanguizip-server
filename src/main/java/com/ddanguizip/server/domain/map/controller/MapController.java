@@ -1,6 +1,7 @@
 package com.ddanguizip.server.domain.map.controller;
 
 import com.ddanguizip.server.domain.map.dto.reponse.RiskAreaListRes;
+import com.ddanguizip.server.domain.map.dto.reponse.RiskListRes;
 import com.ddanguizip.server.domain.map.service.MapService;
 import com.ddanguizip.server.global.common.ApplicationResponse;
 import com.ddanguizip.server.global.success.SuccessCode;
@@ -25,5 +26,19 @@ public class MapController {
 
         RiskAreaListRes riskAreaListRes = mapService.findRiskAreaList(code, pageable);
         return ApplicationResponse.success(SuccessCode.SUCCESS,riskAreaListRes);
+    }
+
+    @GetMapping("/risk/dong")
+    public ApplicationResponse<RiskListRes> getRiskListByDong() {
+
+        RiskListRes riskListRes = mapService.findRiskListByDong();
+        return ApplicationResponse.success(SuccessCode.SUCCESS,riskListRes);
+    }
+
+    @GetMapping("/risk/gu")
+    public ApplicationResponse<RiskListRes> getRiskListByGu() {
+
+        RiskListRes riskListRes = mapService.findRiskListByGu();
+        return ApplicationResponse.success(SuccessCode.SUCCESS,riskListRes);
     }
 }
