@@ -25,6 +25,7 @@ public class GuRiskService {
     private final GuRiskStatsFactory guRiskStatsFactory;
     private final RiskScoreEvalutor riskScoreEvalutor;
 
+    @PostConstruct
     @Transactional
     /**
      * 자치구 기준 위험 비율과 위험도 데이터 저장

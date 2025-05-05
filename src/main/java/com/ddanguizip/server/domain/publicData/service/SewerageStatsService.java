@@ -21,7 +21,6 @@ public class SewerageStatsService {
 
     private final RiskScoreEvalutor riskScoreEvalutor;
 
-    @PostConstruct
     @Transactional
     /**
      * 행정동 기준 위험 점수와 위험도 데이터 저장

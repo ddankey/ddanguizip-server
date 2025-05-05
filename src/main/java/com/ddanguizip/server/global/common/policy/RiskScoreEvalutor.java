@@ -24,9 +24,9 @@ public class RiskScoreEvalutor {
     }
 
     public int fromRatioByGu(double ratio) {
-        if (ratio >= 0.6) return 3;
-        else if (ratio >= 0.4) return 2;
-        else if (ratio >= 0.2) return 1;
+        if (ratio >= 60) return 3;
+        else if (ratio >= 40) return 2;
+        else if (ratio >= 20) return 1;
         else return 0;
     }
 }
