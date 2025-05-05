@@ -21,15 +21,20 @@ public class AccidentDetail extends BaseTimeEntity {
     @Column(nullable = false, length = 40)
     private String addr;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false, length = 500)
     private String sagoDetail;
 
     @Column(nullable = false, length = 20)
     private String sagoDate;
 
-    private Double sinkWidth;
-    private Double sinkExtend;
-    private Double sinkDepth;
+    @Column(nullable = false, length = 20)
+    private String sinkWidth;
+
+    @Column(nullable = false, length = 20)
+    private String sinkExtend;
+
+    @Column(nullable = false, length = 20)
+    private String sinkDepth;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "location_id")
@@ -43,9 +48,9 @@ public class AccidentDetail extends BaseTimeEntity {
     public AccidentDetail(String addr,
                           String sagoDetail,
                           String sagoDate,
-                          Double sinkWidth,
-                          Double sinkExtend,
-                          Double sinkDepth,
+                          String sinkWidth,
+                          String sinkExtend,
+                          String sinkDepth,
                           Location location,
                           AccidentSagoNo sageNo) {
         this.addr = addr;

@@ -22,7 +22,7 @@ public class RequestOpenApiController {
      * 행정구, 행정동 데이터 저장 후 노후관로 데이터 저장하는 로직
      */
     @PostMapping("/hasudo")
-    public ApplicationResponse<Void> saveLocationAndHasudoInfo(@RequestBody List<PointData> pointDataList){
+    public ApplicationResponse<Void> saveLocationAndHasudoInfo(@RequestBody List<PointData> pointDataList) {
         sewerageStatsApiService.process(pointDataList);
         return ApplicationResponse.success(SuccessCode.SUCCESS);
     }
@@ -34,8 +34,19 @@ public class RequestOpenApiController {
     @PostMapping("/accident")
     public ApplicationResponse<Void> saveAccidentSagoNo(@RequestParam(name = "pageNo", defaultValue = "0") int pageNo,
                                                         @RequestParam(name = "sagoDateFrom", defaultValue = "20000101") String sagoDateFrom,
-                                                        @RequestParam(name = "sagoDateTo", defaultValue = "20250504") String sagoDateTo){
-        undergroundAccidentApiService.process(pageNo,sagoDateFrom,sagoDateTo);
+                                                        @RequestParam(name = "sagoDateTo", defaultValue = "20250504") String sagoDateTo) {
+        undergroundAccidentApiService.process(pageNo, sagoDateFrom, sagoDateTo);
+        return ApplicationResponse.success(SuccessCode.SUCCESS);
+    }
+
+    /**
+     * 페이지 넘버 이용하여 지반침하사고리스트 데이터 요청 API 엔드포인트
+     * 서울시 필터링 통해 넘버만 저장
+     */
+    @PostMapping("/accident-detail")
+    public ApplicationResponse<Void> saveAccidentDetail(@RequestParam(name = "pageNo", defaultValue = "0") int pageNo,
+                                                        @RequestParam(name = "sagoNo", defaultValue = "0") String sagoNo) {
+        undergroundAccidentApiService.processDetail(sagoNo, pageNo);
         return ApplicationResponse.success(SuccessCode.SUCCESS);
     }
 }
