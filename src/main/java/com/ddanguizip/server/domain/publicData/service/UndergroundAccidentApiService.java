@@ -2,9 +2,11 @@ package com.ddanguizip.server.domain.publicData.service;
 
 import com.ddanguizip.server.domain.accident.entity.AccidentDetail;
 import com.ddanguizip.server.domain.accident.entity.AccidentSagoNo;
+import com.ddanguizip.server.domain.accident.enumrate.AccidentCategory;
 import com.ddanguizip.server.domain.accident.factory.AccidentFactory;
 import com.ddanguizip.server.domain.accident.repository.AccidentDetailRepository;
 import com.ddanguizip.server.domain.accident.repository.AccidentSagoNoRepository;
+import com.ddanguizip.server.domain.accident.util.AccidentCategoryMapper;
 import com.ddanguizip.server.domain.location.entity.Location;
 import com.ddanguizip.server.domain.location.repository.LocationRepository;
 import com.ddanguizip.server.domain.publicData.dto.response.AccidentDetailRes;
@@ -26,9 +28,12 @@ public class UndergroundAccidentApiService {
     private final LocationRepository locationRepository;
     private final AccidentSagoNoRepository accidentSagoNoRepository;
     private final AccidentDetailRepository accidentDetailRepository;
+
     private final UndergroundAccidentApiClient undergroundAccidentApiClient;
+
     private final UnderGroundAccidentMapper underGroundAccidentMapper;
     private final AccidentFactory accidentFactory;
+    private final AccidentCategoryMapper accidentCategoryMapper;
 
     @Value("${openapi.accident.serviceKey}")
     private String serviceKey;
@@ -84,8 +89,10 @@ public class UndergroundAccidentApiService {
             }
             //sagoNo 찾기
             AccidentSagoNo accidentSagoNo = accidentSagoNoRepository.findAccidentSagoNoBySagoNo(accidentDetailRes.sagoNo());
+            //카테고리 찾기
+            AccidentCategory category = accidentCategoryMapper.mapCategory(accidentDetailRes.sagoDetail());
             //AccidentDetail 저장
-            AccidentDetail accidentDetail = accidentFactory.createAccidentDetail(accidentDetailRes,location,accidentSagoNo);
+            AccidentDetail accidentDetail = accidentFactory.createAccidentDetail(accidentDetailRes,location,accidentSagoNo,category);
 
             accidentDetailRepository.save(accidentDetail);
         }

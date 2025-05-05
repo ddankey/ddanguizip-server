@@ -1,5 +1,6 @@
 package com.ddanguizip.server.domain.accident.entity;
 
+import com.ddanguizip.server.domain.accident.enumrate.AccidentCategory;
 import com.ddanguizip.server.domain.location.entity.Location;
 import com.ddanguizip.server.global.common.BaseTimeEntity;
 import jakarta.persistence.*;
@@ -44,6 +45,10 @@ public class AccidentDetail extends BaseTimeEntity {
     @JoinColumn(name = "accident_sageNo", unique = true)
     private AccidentSagoNo sageNo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private AccidentCategory category;
+
     @Builder
     public AccidentDetail(String addr,
                           String sagoDetail,
@@ -52,7 +57,8 @@ public class AccidentDetail extends BaseTimeEntity {
                           String sinkExtend,
                           String sinkDepth,
                           Location location,
-                          AccidentSagoNo sageNo) {
+                          AccidentSagoNo sageNo,
+                          AccidentCategory category) {
         this.addr = addr;
         this.sagoDetail = sagoDetail;
         this.sagoDate = sagoDate;
@@ -61,5 +67,6 @@ public class AccidentDetail extends BaseTimeEntity {
         this.sinkDepth = sinkDepth;
         this.location = location;
         this.sageNo = sageNo;
+        this.category = category;
     }
 }

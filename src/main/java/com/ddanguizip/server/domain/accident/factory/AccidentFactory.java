@@ -2,6 +2,7 @@ package com.ddanguizip.server.domain.accident.factory;
 
 import com.ddanguizip.server.domain.accident.entity.AccidentDetail;
 import com.ddanguizip.server.domain.accident.entity.AccidentSagoNo;
+import com.ddanguizip.server.domain.accident.enumrate.AccidentCategory;
 import com.ddanguizip.server.domain.location.entity.GuLocation;
 import com.ddanguizip.server.domain.location.entity.Location;
 import com.ddanguizip.server.domain.publicData.dto.response.AccidentDetailRes;
@@ -15,7 +16,7 @@ public class AccidentFactory {
                 .build();
     }
 
-    public AccidentDetail createAccidentDetail(AccidentDetailRes accidentDetailRes,Location location, AccidentSagoNo sageNo) {
+    public AccidentDetail createAccidentDetail(AccidentDetailRes accidentDetailRes, Location location, AccidentSagoNo sageNo, AccidentCategory accidentCategory) {
         return AccidentDetail.builder()
                 .addr(accidentDetailRes.addr())
                 .sagoDetail(accidentDetailRes.sagoDetail())
@@ -25,6 +26,7 @@ public class AccidentFactory {
                 .sinkDepth(accidentDetailRes.sinkDepth())
                 .location(location)
                 .sageNo(sageNo)
+                .category(accidentCategory)
                 .build();
     }
 }
