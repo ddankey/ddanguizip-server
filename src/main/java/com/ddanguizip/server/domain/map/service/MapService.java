@@ -7,8 +7,10 @@ import com.ddanguizip.server.domain.map.dto.reponse.RiskAreaListRes;
 import com.ddanguizip.server.domain.map.dto.reponse.RiskDetail;
 import com.ddanguizip.server.domain.map.dto.reponse.RiskListRes;
 import com.ddanguizip.server.domain.map.validator.MapValidator;
+import com.ddanguizip.server.domain.publicData.entity.GuRiskStats;
 import com.ddanguizip.server.domain.publicData.entity.SelectedRiskArea;
 import com.ddanguizip.server.domain.publicData.entity.SewerageStats;
+import com.ddanguizip.server.domain.publicData.repository.guRiskStats.GuRiskStatsRepository;
 import com.ddanguizip.server.domain.publicData.repository.selectedRiskArea.SelectedRiskAreaRepository;
 import com.ddanguizip.server.domain.publicData.repository.sewerageStats.SewerageStatsRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ public class MapService {
     private final LocationRepository locationRepository;
     private final SelectedRiskAreaRepository selectedRiskAreaRepository;
     private final SewerageStatsRepository sewerageStatsRepository;
+    private final GuRiskStatsRepository guRiskStatsRepository;
 
     private final MapValidator mapValidator;
 
@@ -46,6 +49,16 @@ public class MapService {
         List<RiskDetail> list = new ArrayList<>();
         for(SewerageStats sewerageStats: sewerageStatsList) {
             list.add(RiskDetail.of(sewerageStats.getLocation().getCode(),sewerageStats.getRiskLevel()));
+        }
+
+        return RiskListRes.of(list);
+    }
+
+    public RiskListRes findRiskListByGu() {
+        List<GuRiskStats> guRiskStatsList = guRiskStatsRepository.findAll();
+        List<RiskDetail> list = new ArrayList<>();
+        for(GuRiskStats guRiskStats: guRiskStatsList) {
+            list.add(RiskDetail.of(guRiskStats.getGuLocation().getCode(),guRiskStats.getRiskLevel()));
         }
 
         return RiskListRes.of(list);

@@ -34,4 +34,11 @@ public class MapController {
         RiskListRes riskListRes = mapService.findRiskListByDong();
         return ApplicationResponse.success(SuccessCode.SUCCESS,riskListRes);
     }
+
+    @GetMapping("/risk/gu")
+    public ApplicationResponse<RiskListRes> getRiskListByGu() {
+
+        RiskListRes riskListRes = mapService.findRiskListByGu();
+        return ApplicationResponse.success(SuccessCode.SUCCESS,riskListRes);
+    }
 }
