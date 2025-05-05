@@ -1,5 +1,7 @@
 package com.ddanguizip.server.domain.publicData.entity;
 
+import com.ddanguizip.server.domain.location.entity.GuLocation;
+import com.ddanguizip.server.domain.location.entity.Location;
 import com.ddanguizip.server.global.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -23,13 +25,14 @@ public class GuRiskStats extends BaseTimeEntity {
     @Column(nullable = false)
     private Integer riskLevel;
 
-    @Column(nullable = false)
-    private String guCode;
+    @OneToOne
+    @JoinColumn(name = "gu_location_id", unique = true) // 유일하게 연결됨
+    private GuLocation guLocation;
 
     @Builder
-    public GuRiskStats(Double riskRatio, Integer riskLevel, String guCode) {
+    public GuRiskStats(Double riskRatio, Integer riskLevel, GuLocation guLocation) {
         this.riskRatio = riskRatio;
         this.riskLevel = riskLevel;
-        this.guCode = guCode;
+        this.guLocation = guLocation;
     }
 }
