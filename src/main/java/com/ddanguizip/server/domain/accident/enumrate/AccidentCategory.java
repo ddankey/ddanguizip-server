@@ -19,4 +19,13 @@ public enum AccidentCategory {
     public String getDescription() {
         return description;
     }
+
+    public static boolean existCategory(String category) {
+        for (AccidentCategory value : AccidentCategory.values()) {
+            if (value.name().equalsIgnoreCase(category)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
