@@ -10,4 +10,5 @@ public interface LocationRepository extends JpaRepository<Location, Long>{
     List<Location> findAllByGu(String gu);
     Location findLocationByDong(String dong);
     Location findLocationByCode(String code);
+    int countLocationByGu(String gu);
 }
