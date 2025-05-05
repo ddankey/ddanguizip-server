@@ -12,9 +12,7 @@ public class UnderGroundAccidentMapper {
         try {
             Map<String, Object> r = (Map<String, Object>) response.get("response");
             Map<String, Object> body = (Map<String, Object>) r.get("body");
-            Map<String, Object> itemsMap = (Map<String, Object>) body.get("items");
-
-            List<Map<String, Object>> items = (List<Map<String, Object>>) itemsMap.get("item");
+            List<Map<String, Object>> items = (List<Map<String, Object>>) body.get("items");
 
             List<String> result = new ArrayList<>();
 
