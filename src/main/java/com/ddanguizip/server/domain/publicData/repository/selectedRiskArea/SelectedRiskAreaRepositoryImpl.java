@@ -41,6 +41,19 @@ public class SelectedRiskAreaRepositoryImpl implements SelectedRiskAreaRepositor
         return new PageImpl<>(results, pageable, total);
     }
 
+    @Override
+    public boolean existsByLocation(Location location) {
+        BooleanExpression filterCondition = locationEq(location);
+
+        Integer fetchFirst =  queryFactory
+                .selectOne()
+                .from(selectedRiskArea)
+                .where(filterCondition)
+                .fetchFirst();
+
+        return fetchFirst != null;
+    }
+
     private BooleanExpression locationEq(Location location) {
         if (location == null) {
             return null;

@@ -4,8 +4,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RiskScoreEvalutor {
-    public double calculatorScore(double agingRate, double dredgingRate) {
-        return (agingRate * 0.6) + ((100 - dredgingRate) * 0.4);
+    public double calculatorScore(double agingRate, double dredgingRate, boolean isDanger) {
+        double score =(agingRate * 0.6) + ((100 - dredgingRate) * 0.4);
+        if(isDanger) {
+            score+=5;
+        }
+        return score;
     }
 
     public int fromScoreByDong(double score) {
@@ -20,9 +24,9 @@ public class RiskScoreEvalutor {
     }
 
     public int fromRatioByGu(double ratio) {
-        if (ratio >= 61) return 3;
-        else if (ratio >= 31) return 2;
-        else if (ratio >= 11) return 1;
+        if (ratio >= 0.6) return 3;
+        else if (ratio >= 0.4) return 2;
+        else if (ratio >= 0.2) return 1;
         else return 0;
     }
 }
