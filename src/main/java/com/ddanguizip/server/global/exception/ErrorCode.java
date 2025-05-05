@@ -18,7 +18,10 @@ public enum ErrorCode implements BaseResponseCode {
     INVALID_SORT_EXCEPTION(HttpStatus.BAD_REQUEST, 2007, "올바르지 않은 정렬 값입니다."),
 
     // 3000: Map Error (3100~)
-    NOT_FOUND_CODE_EXCEPTION(HttpStatus.NOT_FOUND, 3100, "존재하지 않는 코드입니다.");
+    NOT_FOUND_CODE_EXCEPTION(HttpStatus.NOT_FOUND, 3100, "존재하지 않는 코드입니다."),
+
+    // 4000: Map Error (4100~)
+    NOT_FOUND_CATEGOREY_EXCEPTION(HttpStatus.NOT_FOUND, 4100, "존재하지 않는 카테고리입니다.");
 
     private final HttpStatus httpStatus;
     private final Integer code;

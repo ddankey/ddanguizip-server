@@ -26,7 +26,7 @@ public class SecurityConfig {
 
                 // 🔥 actuator 접근 허용 추가!
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/actuator/**", "/api/v1/sewerage/**","/api/v1/accident/**","/api/v1/map/**").permitAll()
+                        .requestMatchers("/actuator/**", "/api/v1/openapi/**","/api/v1/accident/**","/api/v1/map/**").permitAll()
                         .anyRequest().authenticated());
 
         return http.build();
