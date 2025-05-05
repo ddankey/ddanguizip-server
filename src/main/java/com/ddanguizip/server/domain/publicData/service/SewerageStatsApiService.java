@@ -4,7 +4,7 @@ import com.ddanguizip.server.domain.location.entity.Location;
 import com.ddanguizip.server.domain.location.factory.LocationFactory;
 import com.ddanguizip.server.domain.location.repository.LocationRepository;
 import com.ddanguizip.server.domain.publicData.dto.request.PointData;
-import com.ddanguizip.server.domain.publicData.dto.response.HasudoResponse;
+import com.ddanguizip.server.domain.publicData.dto.response.HasudoRes;
 import com.ddanguizip.server.domain.publicData.entity.SewerageStats;
 import com.ddanguizip.server.domain.publicData.factory.SewerageStatsFactory;
 import com.ddanguizip.server.domain.publicData.repository.sewerageStats.SewerageStatsRepository;
@@ -39,12 +39,12 @@ public class SewerageStatsApiService {
             //하수도 노후관로 데이터 요청
             Map<String, Object> reponse = sewerageStatsApiClient.inquireHasudo(requestBody);
             //필요한 데이터 맵핑
-            HasudoResponse hasudoResponse = sewerageStatsMapper.toHasudoResponse(reponse);
+            HasudoRes hasudoRes = sewerageStatsMapper.toHasudoResponse(reponse);
 
-            Location location = locationFactory.create(hasudoResponse.gu(), point.EMD_KOR_NM(), String.valueOf(point.EMD_CD()));
+            Location location = locationFactory.create(hasudoRes.gu(), point.EMD_KOR_NM(), String.valueOf(point.EMD_CD()));
             locationRepository.save(location);
 
-            SewerageStats sewerageStats = sewerageStatsFactory.create(location, hasudoResponse.oldExtnPer(), hasudoResponse.oldExtnPerYr());
+            SewerageStats sewerageStats = sewerageStatsFactory.create(location, hasudoRes.oldExtnPer(), hasudoRes.oldExtnPerYr());
             sewerageStatsRepository.save(sewerageStats);
         }
     }
