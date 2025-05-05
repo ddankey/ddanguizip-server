@@ -2,7 +2,7 @@ package com.ddanguizip.server.domain.publicData.cvs;
 
 import com.ddanguizip.server.domain.location.entity.Location;
 import com.ddanguizip.server.domain.location.repository.LocationRepository;
-import com.ddanguizip.server.domain.publicData.repository.SewerageStatsRepository;
+import com.ddanguizip.server.domain.publicData.repository.sewerageStats.SewerageStatsRepository;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import lombok.RequiredArgsConstructor;

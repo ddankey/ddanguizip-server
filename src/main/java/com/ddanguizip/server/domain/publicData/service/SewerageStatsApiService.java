@@ -7,7 +7,7 @@ import com.ddanguizip.server.domain.publicData.dto.request.PointData;
 import com.ddanguizip.server.domain.publicData.dto.response.HasudoResponse;
 import com.ddanguizip.server.domain.publicData.entity.SewerageStats;
 import com.ddanguizip.server.domain.publicData.factory.SewerageStatsFactory;
-import com.ddanguizip.server.domain.publicData.repository.SewerageStatsRepository;
+import com.ddanguizip.server.domain.publicData.repository.sewerageStats.SewerageStatsRepository;
 import com.ddanguizip.server.domain.publicData.util.SewerageStatsApiClient;
 import com.ddanguizip.server.domain.publicData.util.SewerageStatsMapper;
 import lombok.RequiredArgsConstructor;

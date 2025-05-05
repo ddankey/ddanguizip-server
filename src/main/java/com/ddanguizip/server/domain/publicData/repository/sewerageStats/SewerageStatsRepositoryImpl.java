@@ -1,4 +1,4 @@
-package com.ddanguizip.server.domain.publicData.repository;
+package com.ddanguizip.server.domain.publicData.repository.sewerageStats;
 
 import com.ddanguizip.server.domain.map.dto.reponse.RiskDetail;
 import com.querydsl.core.types.Projections;

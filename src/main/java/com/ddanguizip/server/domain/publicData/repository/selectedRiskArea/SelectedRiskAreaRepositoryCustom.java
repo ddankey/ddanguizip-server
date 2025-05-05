@@ -1,4 +1,4 @@
-package com.ddanguizip.server.domain.publicData.repository;
+package com.ddanguizip.server.domain.publicData.repository.selectedRiskArea;
 
 import com.ddanguizip.server.domain.location.entity.Location;
 import com.ddanguizip.server.domain.publicData.entity.SelectedRiskArea;
